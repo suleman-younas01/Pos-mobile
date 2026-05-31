@@ -16,7 +16,7 @@ class CreateSaleDocumentsTable extends Migration
         Schema::create('sale_documents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('sale_id')->index('sale_documents_sale_id');
+            $table->integer('sale_id');
             $table->string('name', 255);
             $table->string('path', 500);
             $table->bigInteger('size')->nullable();
@@ -36,6 +36,7 @@ class CreateSaleDocumentsTable extends Migration
         Schema::dropIfExists('sale_documents');
     }
 }
+
 
 
 

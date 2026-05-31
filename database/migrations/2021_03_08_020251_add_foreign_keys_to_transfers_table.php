@@ -28,9 +28,9 @@ class AddForeignKeysToTransfersTable extends Migration
     public function down()
     {
         Schema::table('transfers', function (Blueprint $table) {
-            $table->dropForeign('from_warehouse_id');
-            $table->dropForeign('to_warehouse_id');
-            $table->dropForeign('user_id_transfers');
+            $table->dropForeign(['from_warehouse_id']);
+            $table->dropForeign(['to_warehouse_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

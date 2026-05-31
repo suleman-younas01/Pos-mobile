@@ -29,8 +29,8 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
 
             $table->index(['name', 'status']);
-            $table->index('asset_category_id');
-            $table->index('warehouse_id');
+            $table;
+            $table;
         });
     }
 
@@ -44,3 +44,4 @@ return new class extends Migration
         Schema::dropIfExists('assets');
     }
 };
+

@@ -27,8 +27,8 @@ class AddForeignKeysToShipmentsTable extends Migration
     public function down()
     {
         Schema::table('shipments', function (Blueprint $table) {
-            $table->dropForeign('shipment_sale_id');
-            $table->dropForeign('shipment_user_id');
+            $table->dropForeign(['sale_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

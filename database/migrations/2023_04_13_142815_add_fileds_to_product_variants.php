@@ -20,12 +20,12 @@ class AddFiledsToProductVariants extends Migration
             $table->string('image')->default('no-image.png')->after('code');
         });
 
-        DB::table('product_variants')->join('products', 'product_variants.product_id', '=', 'products.id')
-            ->update([
-                'product_variants.cost' => DB::raw('products.cost'),
-                'product_variants.price' => DB::raw('products.price'),
-                'product_variants.code' => DB::raw("CONCAT(product_variants.name, '-', products.code)"),
-            ]);
+        // DB::table('product_variants')->join('products', 'product_variants.product_id', '=', 'products.id')
+        //     ->update([
+        //         'product_variants.cost' => DB::raw('products.cost'),
+        //         'product_variants.price' => DB::raw('products.price'),
+        //         'product_variants.code' => DB::raw("CONCAT(product_variants.name, '-', products.code)"),
+        //     ]);
     }
 
     /**

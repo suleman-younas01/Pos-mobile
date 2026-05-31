@@ -28,9 +28,9 @@ class AddForeignKeysToPayrollsTable extends Migration
     public function down()
     {
         Schema::table('payrolls', function (Blueprint $table) {
-            $table->dropForeign('payrolls_account_id');
-            $table->dropForeign('payrolls_employee_id');
-            $table->dropForeign('payrolls_user_id');
+            $table->dropForeign(['account_id']);
+            $table->dropForeign(['employee_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

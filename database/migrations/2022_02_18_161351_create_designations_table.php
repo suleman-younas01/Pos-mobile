@@ -16,8 +16,8 @@ class CreateDesignationsTable extends Migration
         Schema::create('designations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('company_id')->index('designation_company_id');
-            $table->integer('department_id')->index('designation_departement_id');
+            $table->integer('company_id');
+            $table->integer('department_id');
             $table->string('designation', 192);
             $table->timestamps(6);
             $table->softDeletes();
@@ -34,3 +34,4 @@ class CreateDesignationsTable extends Migration
         Schema::drop('designations');
     }
 }
+

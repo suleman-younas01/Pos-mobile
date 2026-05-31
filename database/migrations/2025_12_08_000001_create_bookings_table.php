@@ -19,8 +19,8 @@ class CreateBookingsTable extends Migration
             $table->integer('id', true);
             $table->string('Ref', 192)->nullable();
 
-            $table->integer('customer_id')->index('bookings_customer_id');
-            $table->integer('product_id')->nullable()->index('bookings_product_id');
+            $table->integer('customer_id');
+            $table->integer('product_id')->nullable();
             $table->decimal('price', 10, 2)->nullable();
 
             $table->date('booking_date');
@@ -45,6 +45,7 @@ class CreateBookingsTable extends Migration
         Schema::dropIfExists('bookings');
     }
 }
+
 
 
 

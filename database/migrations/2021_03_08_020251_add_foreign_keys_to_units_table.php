@@ -26,7 +26,7 @@ class AddForeignKeysToUnitsTable extends Migration
     public function down()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->dropForeign('base_unit');
+            $table->dropForeign(['base_unit']);
         });
     }
 }

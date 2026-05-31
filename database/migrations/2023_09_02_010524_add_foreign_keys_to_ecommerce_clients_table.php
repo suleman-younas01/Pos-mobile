@@ -26,7 +26,7 @@ class AddForeignKeysToEcommerceClientsTable extends Migration
     public function down()
     {
         Schema::table('ecommerce_clients', function (Blueprint $table) {
-            $table->dropForeign('ecommerce_clients_client_id');
+            $table->dropForeign(['client_id']);
         });
     }
 }

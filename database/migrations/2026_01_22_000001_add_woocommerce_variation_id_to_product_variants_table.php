@@ -10,7 +10,7 @@ class AddWoocommerceVariationIdToProductVariantsTable extends Migration
     {
         Schema::table('product_variants', function (Blueprint $table) {
             if (! Schema::hasColumn('product_variants', 'woocommerce_variation_id')) {
-                $table->unsignedBigInteger('woocommerce_variation_id')->nullable()->index('pv_woocommerce_variation_id_idx');
+                $table->unsignedBigInteger('woocommerce_variation_id')->nullable();
             }
         });
     }
@@ -25,4 +25,5 @@ class AddWoocommerceVariationIdToProductVariantsTable extends Migration
         });
     }
 }
+
 

@@ -16,9 +16,9 @@ class CreateProductWarehouseLocationsTable extends Migration
         Schema::create('product_warehouse_locations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('product_id')->index('pwl_product_id');
-            $table->integer('warehouse_id')->index('pwl_warehouse_id');
-            $table->integer('warehouse_location_id')->nullable()->index('pwl_location_id');
+            $table->integer('product_id');
+            $table->integer('warehouse_id');
+            $table->integer('warehouse_location_id')->nullable();
             $table->timestamps(6);
 
             $table->unique(['product_id', 'warehouse_id'], 'pwl_product_wh_unique');
@@ -35,4 +35,5 @@ class CreateProductWarehouseLocationsTable extends Migration
         Schema::drop('product_warehouse_locations');
     }
 }
+
 

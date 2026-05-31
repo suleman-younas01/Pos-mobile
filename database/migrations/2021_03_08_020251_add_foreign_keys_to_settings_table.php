@@ -26,7 +26,7 @@ class AddForeignKeysToSettingsTable extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropForeign('currency_id');
+            $table->dropForeign(['currency_id']);
         });
     }
 }

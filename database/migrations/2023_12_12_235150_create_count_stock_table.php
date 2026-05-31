@@ -16,9 +16,9 @@ class CreateCountStockTable extends Migration
         Schema::create('count_stock', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('user_id')->index('count_stock_user_id');
+            $table->integer('user_id');
             $table->date('date');
-            $table->integer('warehouse_id')->index('count_stock_warehouse_id');
+            $table->integer('warehouse_id');
             $table->string('file_stock', 192);
             $table->timestamps(6);
             $table->softDeletes();
@@ -35,3 +35,4 @@ class CreateCountStockTable extends Migration
         Schema::drop('count_stock');
     }
 }
+

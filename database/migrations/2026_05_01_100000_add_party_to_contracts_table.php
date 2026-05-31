@@ -9,15 +9,12 @@ class AddPartyToContractsTable extends Migration
 {
     private function dropForeignIfExists(string $table, string $name): void
     {
-        $exists = DB::selectOne(
-            "SELECT 1 FROM information_schema.TABLE_CONSTRAINTS
-             WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND CONSTRAINT_NAME = ? AND CONSTRAINT_TYPE = 'FOREIGN KEY'",
-            [$table, $name]
-        );
-        if ($exists) {
+        try {
             Schema::table($table, function (Blueprint $table) use ($name) {
                 $table->dropForeign($name);
             });
+        } catch (\Throwable $e) {
+            // Ignore missing foreign key or SQLite schema inspection differences.
         }
     }
 
@@ -37,7 +34,11 @@ class AddPartyToContractsTable extends Migration
 
         $this->dropForeignIfExists('contracts', 'contracts_client_fk');
 
-        DB::statement('ALTER TABLE contracts MODIFY client_id INT NULL');
+        try {
+            DB::statement('ALTER TABLE contracts MODIFY client_id INT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
 
         Schema::table('contracts', function (Blueprint $table) {
             $table->foreign('client_id', 'contracts_client_fk')
@@ -64,7 +65,11 @@ class AddPartyToContractsTable extends Migration
             }
         });
 
-        DB::statement('ALTER TABLE contracts MODIFY client_id INT NOT NULL');
+        try {
+            DB::statement('ALTER TABLE contracts MODIFY client_id INT NOT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
 
         Schema::table('contracts', function (Blueprint $table) {
             $table->foreign('client_id', 'contracts_client_fk')

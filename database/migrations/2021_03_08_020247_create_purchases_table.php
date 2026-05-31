@@ -16,11 +16,11 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('user_id')->index('user_id_purchases');
+            $table->integer('user_id');
             $table->string('Ref', 192);
             $table->date('date');
-            $table->integer('provider_id')->index('provider_id');
-            $table->integer('warehouse_id')->index('warehouse_id_purchase');
+            $table->integer('provider_id');
+            $table->integer('warehouse_id');
             $table->float('tax_rate', 10, 0)->nullable()->default(0);
             $table->float('TaxNet', 10, 0)->nullable()->default(0);
             $table->float('discount', 10, 0)->nullable()->default(0);
@@ -45,3 +45,4 @@ class CreatePurchasesTable extends Migration
         Schema::drop('purchases');
     }
 }
+

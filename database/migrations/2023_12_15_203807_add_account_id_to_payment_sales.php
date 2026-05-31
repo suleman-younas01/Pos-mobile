@@ -29,7 +29,7 @@ class AddAccountIdToPaymentSales extends Migration
     public function down()
     {
         Schema::table('payment_sales', function (Blueprint $table) {
-            $table->dropForeign('payment_sales_account_id');
+            $table->dropForeign(['account_id']);
         });
     }
 }

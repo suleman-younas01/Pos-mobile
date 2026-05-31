@@ -27,8 +27,8 @@ class AddForeignKeysToCountStockTable extends Migration
     public function down()
     {
         Schema::table('count_stock', function (Blueprint $table) {
-            $table->dropForeign('count_stock_user_id');
-            $table->dropForeign('count_stock_warehouse_id');
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

@@ -16,10 +16,10 @@ class CreateLeavesTable extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('employee_id')->index('leave_employee_id');
-            $table->integer('company_id')->index('leave_company_id');
-            $table->integer('department_id')->index('leave_department_id');
-            $table->integer('leave_type_id')->index('leave_leave_type_id');
+            $table->integer('employee_id');
+            $table->integer('company_id');
+            $table->integer('department_id');
+            $table->integer('leave_type_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('days', 192);
@@ -42,3 +42,4 @@ class CreateLeavesTable extends Migration
         Schema::drop('leaves');
     }
 }
+

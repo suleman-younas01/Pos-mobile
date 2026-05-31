@@ -14,16 +14,16 @@ class Warehouse extends Seeder
      */
     public function run()
     {
-        // Insert some stuff
-        DB::table('warehouses')->insert(
+        DB::table('warehouses')->updateOrInsert(
+            ['id' => 1],
             [
-                'id' => 1,
                 'name' => 'Default Warehouse',
                 'city' => null,
                 'mobile' => null,
                 'zip' => null,
                 'email' => null,
                 'country' => null,
+                'deleted_at' => null,
             ]
         );
     }

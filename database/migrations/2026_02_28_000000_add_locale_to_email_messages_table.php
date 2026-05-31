@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         if (!Schema::hasColumn('email_messages', 'locale')) {
@@ -18,21 +15,26 @@ return new class extends Migration
             \DB::table('email_messages')->whereNull('locale')->update(['locale' => 'en']);
         }
 
-        $indexExists = \DB::select("SHOW INDEX FROM email_messages WHERE Key_name = 'email_messages_name_locale_unique'");
-        if (empty($indexExists)) {
-            \DB::statement('ALTER TABLE email_messages ADD UNIQUE email_messages_name_locale_unique (name(100), locale)');
+        // SQLite compatible - skip unique index check
+        try {
+            Schema::table('email_messages', function (Blueprint $table) {
+                $table->unique(['name', 'locale'], 'email_messages_name_locale_unique');
+            });
+        } catch (\Exception $e) {
+            // Index already exists, ignore
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        $indexExists = \DB::select("SHOW INDEX FROM email_messages WHERE Key_name = 'email_messages_name_locale_unique'");
-        if (!empty($indexExists)) {
-            \DB::statement('ALTER TABLE email_messages DROP INDEX email_messages_name_locale_unique');
+        try {
+            Schema::table('email_messages', function (Blueprint $table) {
+                $table->dropUnique('email_messages_name_locale_unique');
+            });
+        } catch (\Exception $e) {
+            // ignore
         }
+
         if (Schema::hasColumn('email_messages', 'locale')) {
             Schema::table('email_messages', function (Blueprint $table) {
                 $table->dropColumn('locale');

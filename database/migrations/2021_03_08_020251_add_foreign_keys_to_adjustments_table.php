@@ -27,8 +27,8 @@ class AddForeignKeysToAdjustmentsTable extends Migration
     public function down()
     {
         Schema::table('adjustments', function (Blueprint $table) {
-            $table->dropForeign('user_id_adjustment');
-            $table->dropForeign('warehouse_id_adjustment');
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

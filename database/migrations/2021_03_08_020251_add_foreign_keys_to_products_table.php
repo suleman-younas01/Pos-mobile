@@ -30,11 +30,11 @@ class AddForeignKeysToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('brand_id_products');
-            $table->dropForeign('category_id');
-            $table->dropForeign('unit_id_products');
-            $table->dropForeign('unit_id_sales');
-            $table->dropForeign('unit_purchase_products');
+            $table->dropForeign(['brand_id']);
+            $table->dropForeign(['category_id']);
+            $table->dropForeign(['unit_id']);
+            $table->dropForeign(['unit_sale_id']);
+            $table->dropForeign(['unit_purchase_id']);
         });
     }
 }

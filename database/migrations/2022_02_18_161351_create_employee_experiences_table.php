@@ -16,7 +16,7 @@ class CreateEmployeeExperiencesTable extends Migration
         Schema::create('employee_experiences', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('employee_id')->index('employee_experience_employee_id');
+            $table->integer('employee_id');
             $table->string('title', 192);
             $table->string('company_name', 192);
             $table->string('location', 192)->nullable();
@@ -39,3 +39,4 @@ class CreateEmployeeExperiencesTable extends Migration
         Schema::drop('employee_experiences');
     }
 }
+

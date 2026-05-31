@@ -15,8 +15,8 @@ class CreateEmployeeProjectTable extends Migration
     {
         Schema::create('employee_project', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('employee_id')->index('employee_project_employee_id');
-            $table->integer('project_id')->index('employee_project_project_id');
+            $table->integer('employee_id');
+            $table->integer('project_id');
         });
     }
 
@@ -30,3 +30,4 @@ class CreateEmployeeProjectTable extends Migration
         Schema::drop('employee_project');
     }
 }
+

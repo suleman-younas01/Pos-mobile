@@ -26,7 +26,7 @@ class AddForeignKeysToHolidaysTable extends Migration
     public function down()
     {
         Schema::table('holidays', function (Blueprint $table) {
-            $table->dropForeign('holidays_company_id');
+            $table->dropForeign(['company_id']);
         });
     }
 }

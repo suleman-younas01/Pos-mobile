@@ -28,9 +28,9 @@ class AddForeignKeysToAttendancesTable extends Migration
     public function down()
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->dropForeign('attendances_company_id');
-            $table->dropForeign('attendances_user_id');
-            $table->dropForeign('attendances_employee_id');
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['employee_id']);
         });
     }
 }

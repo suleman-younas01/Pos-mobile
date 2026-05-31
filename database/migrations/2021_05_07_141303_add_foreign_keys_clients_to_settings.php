@@ -28,8 +28,8 @@ class AddForeignKeysClientsToSettings extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropForeign('settings_client_id');
-            $table->dropForeign('settings_warehouse_id');
+            $table->dropForeign(['client_id']);
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

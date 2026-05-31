@@ -16,8 +16,8 @@ class CreateTransferMoneyTable extends Migration
         Schema::create('transfer_money', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('from_account_id')->index('from_account_id');
-            $table->integer('to_account_id')->index('to_account_id');
+            $table->integer('from_account_id');
+            $table->integer('to_account_id');
             $table->date('date');
             $table->float('amount', 10, 0);
             $table->timestamps(6);
@@ -35,3 +35,4 @@ class CreateTransferMoneyTable extends Migration
         Schema::drop('transfer_money');
     }
 }
+

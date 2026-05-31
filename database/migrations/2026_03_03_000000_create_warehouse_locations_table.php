@@ -16,7 +16,7 @@ class CreateWarehouseLocationsTable extends Migration
         Schema::create('warehouse_locations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('warehouse_id')->index('warehouse_locations_warehouse_id');
+            $table->integer('warehouse_id');
             $table->string('code', 64);
             $table->string('name', 192)->nullable();
             $table->boolean('is_active')->default(true);
@@ -37,4 +37,5 @@ class CreateWarehouseLocationsTable extends Migration
         Schema::drop('warehouse_locations');
     }
 }
+
 

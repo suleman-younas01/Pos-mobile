@@ -1,9 +1,12 @@
-{
+{   "main": "electron.js",
     "private": true,
     "overrides": {
         "node-sass": "npm:sass@^1.49.7"
     },
+    
     "scripts": {
+        "electron": "electron .",
+        "build-exe": "electron-builder --win",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
@@ -83,6 +86,8 @@
         "babel-eslint": "^10.1.0",
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^6.4.1",
+        "electron": "^36.3.1",
+        "electron-builder": "^26.0.12",
         "eslint-plugin-vue": "^6.2.2",
         "postcss": "^8.5.10",
         "postcss-loader": "^6.2.1",
@@ -95,5 +100,48 @@
         "webpack-bundle-analyzer": "^4.5.0",
         "webpack-cli": "^4.9.2",
         "webpack-i18n-extractor-plugin": "^2.0.7"
+    },
+    "build": {
+        "appId": "com.pos.mobile",
+        "productName": "POS Mobile",
+        "asar": false,
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "electron.js",
+            "package.json",
+            ".env",
+            "artisan",
+            "app/**/*",
+            "bootstrap/**/*",
+            "config/**/*",
+            "database/**/*",
+            "public/**/*",
+            "resources/**/*",
+            "routes/**/*",
+            "storage/**/*",
+            "vendor/**/*"
+        ],
+        "afterPack": "scripts/copy-php.js",
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ],
+            "artifactName": "${productName}-Setup-${version}.${ext}"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "perMachine": false,
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "runAfterFinish": true
+        }
     }
 }

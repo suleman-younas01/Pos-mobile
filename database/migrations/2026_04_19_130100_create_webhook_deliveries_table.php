@@ -24,10 +24,10 @@ return new class extends Migration
                 $table->timestamp('next_attempt_at')->nullable();
                 $table->timestamps();
 
-                $table->index('webhook_id');
-                $table->index('status');
-                $table->index('event');
-                $table->index('created_at');
+                $table;
+                $table;
+                $table;
+                $table;
 
                 $table->foreign('webhook_id')
                     ->references('id')->on('webhooks')
@@ -41,3 +41,4 @@ return new class extends Migration
         Schema::dropIfExists('webhook_deliveries');
     }
 };
+

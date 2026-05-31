@@ -28,9 +28,9 @@ class AddForeignKeysToProductWarehouseTable extends Migration
     public function down()
     {
         Schema::table('product_warehouse', function (Blueprint $table) {
-            $table->dropForeign('art_id');
-            $table->dropForeign('mag_id');
-            $table->dropForeign('product_variant_id');
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['warehouse_id']);
+            $table->dropForeign(['product_variant_id']);
         });
     }
 }

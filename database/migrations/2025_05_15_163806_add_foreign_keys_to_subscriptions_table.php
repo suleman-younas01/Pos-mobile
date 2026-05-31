@@ -29,10 +29,10 @@ return new class extends Migration
     public function down()
     {
         Schema::table('subscriptions', function (Blueprint $table) {
-            $table->dropForeign('sub_warehouse_id');
-            $table->dropForeign('sub_user_id');
-            $table->dropForeign('sub_product_id');
-            $table->dropForeign('sub_client_id');
+            $table->dropForeign(['warehouse_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['client_id']);
         });
     }
 };

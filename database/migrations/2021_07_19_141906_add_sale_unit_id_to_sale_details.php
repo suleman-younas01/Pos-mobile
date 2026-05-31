@@ -29,7 +29,7 @@ class AddSaleUnitIdToSaleDetails extends Migration
     public function down()
     {
         Schema::table('sale_details', function (Blueprint $table) {
-            $table->dropForeign('sales_sale_unit_id');
+            $table->dropForeign(['sale_unit_id']);
         });
     }
 }

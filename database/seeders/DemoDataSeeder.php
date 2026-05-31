@@ -260,13 +260,10 @@ class DemoDataSeeder extends Seeder
                 'wholesale_price' => $p['wholesale'],
                 'min_price' => $p['min'],
                 'category_id' => $p['cat'],
-                'sub_category_id' => $p['sub'],
                 'brand_id' => $p['brand'],
                 'unit_id' => $unitPieceId,
                 'unit_sale_id' => $unitPieceId,
                 'unit_purchase_id' => $unitBoxId,
-                'TaxNet' => 0,
-                'tax_method' => 1,
                 'discount' => 0,
                 'discount_method' => 2,
                 'image' => 'no-image.png',
@@ -280,6 +277,15 @@ class DemoDataSeeder extends Seeder
                 'updated_at' => $now,
             ];
 
+            if (Schema::hasColumn('products', 'sub_category_id')) {
+                $productRow['sub_category_id'] = $p['sub'];
+            }
+            if (Schema::hasColumn('products', 'TaxNet')) {
+                $productRow['TaxNet'] = 0;
+            }
+            if (Schema::hasColumn('products', 'tax_method')) {
+                $productRow['tax_method'] = 1;
+            }
             if ($hasIsFeatured) {
                 $productRow['is_featured'] = 0;
             }

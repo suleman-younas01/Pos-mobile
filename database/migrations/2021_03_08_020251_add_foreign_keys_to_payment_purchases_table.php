@@ -27,8 +27,8 @@ class AddForeignKeysToPaymentPurchasesTable extends Migration
     public function down()
     {
         Schema::table('payment_purchases', function (Blueprint $table) {
-            $table->dropForeign('factures_purchase_id');
-            $table->dropForeign('user_id_factures_achat');
+            $table->dropForeign(['purchase_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

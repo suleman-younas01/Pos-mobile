@@ -27,8 +27,8 @@ class AddForeignKeysToUserWarehouseTable extends Migration
     public function down()
     {
         Schema::table('user_warehouse', function (Blueprint $table) {
-            $table->dropForeign('user_warehouse_user_id');
-            $table->dropForeign('user_warehouse_warehouse_id');
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

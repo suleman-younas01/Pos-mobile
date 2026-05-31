@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             if (Schema::hasColumn('products', 'sub_category_id')) {
                 try {
-                    $table->dropForeign('products_sub_category_id_foreign');
+                    $table->dropForeign(['sub_category_id']);
                 } catch (\Throwable $e) {
                     // ignore if foreign key name differs or already removed
                 }

@@ -26,7 +26,7 @@ class AddForeignKeysToProductVariantsTable extends Migration
     public function down()
     {
         Schema::table('product_variants', function (Blueprint $table) {
-            $table->dropForeign('product_id_variant');
+            $table->dropForeign(['product_id']);
         });
     }
 }

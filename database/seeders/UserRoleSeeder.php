@@ -14,8 +14,8 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        // Insert some stuff
-        DB::table('role_user')->insert(
+        DB::table('role_user')->updateOrInsert(
+            ['user_id' => 1, 'role_id' => 1],
             [
                 'id' => 1,
                 'user_id' => 1,

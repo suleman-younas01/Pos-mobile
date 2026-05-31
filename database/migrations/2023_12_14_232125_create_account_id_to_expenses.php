@@ -29,7 +29,7 @@ class CreateAccountIdToExpenses extends Migration
     public function down()
     {
         Schema::table('expenses', function (Blueprint $table) {
-            $table->dropForeign('expense_account_id');
+            $table->dropForeign(['account_id']);
         });
     }
 }

@@ -31,7 +31,7 @@ return new class extends Migration
 
             // allow same realm in both environments (Dev/Prod)
             $table->unique(['realm_id', 'environment']);
-            $table->index('realm_id');
+            $table;
         });
     }
 
@@ -40,3 +40,4 @@ return new class extends Migration
         Schema::dropIfExists('quick_books_tokens');
     }
 };
+

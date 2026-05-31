@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->integer('subscription_id')->nullable()->after('warehouse_id')->index('subscription_id');
+            $table->integer('subscription_id')->nullable()->after('warehouse_id');
 
             $table->foreign('subscription_id', 'sales_subscription_id_foreign')
                 ->references('id')
@@ -28,9 +28,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->dropForeign('sales_subscription_id_foreign');
+            $table->dropForeign(['subscription_id']);
             $table->dropIndex('subscription_id');
             $table->dropColumn('subscription_id');
         });
     }
 };
+

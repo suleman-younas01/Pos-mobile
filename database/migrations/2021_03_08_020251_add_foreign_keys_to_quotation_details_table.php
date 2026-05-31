@@ -28,9 +28,9 @@ class AddForeignKeysToQuotationDetailsTable extends Migration
     public function down()
     {
         Schema::table('quotation_details', function (Blueprint $table) {
-            $table->dropForeign('product_id_quotation_details');
-            $table->dropForeign('quotation_id');
-            $table->dropForeign('quote_product_variant_id');
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['quotation_id']);
+            $table->dropForeign(['product_variant_id']);
         });
     }
 }

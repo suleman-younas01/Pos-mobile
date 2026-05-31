@@ -17,12 +17,12 @@ class CreateDraftSaleDetailsTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('id', true);
             $table->date('date');
-            $table->integer('draft_sale_id')->index('draft_sale_details_draft_sale_id');
-            $table->integer('product_id')->index('draft_sale_details_product_id');
-            $table->integer('product_variant_id')->nullable()->index('draft_sale_details_product_variant_id');
+            $table->integer('draft_sale_id');
+            $table->integer('product_id');
+            $table->integer('product_variant_id')->nullable();
             $table->text('imei_number')->nullable();
             $table->float('price', 10, 0);
-            $table->integer('sale_unit_id')->nullable()->index('draft_sale_details_sale_unit_id');
+            $table->integer('sale_unit_id')->nullable();
             $table->float('TaxNet', 10, 0)->nullable();
             $table->string('tax_method', 192)->nullable()->default('1');
             $table->float('discount', 10, 0)->nullable();
@@ -43,3 +43,4 @@ class CreateDraftSaleDetailsTable extends Migration
         Schema::drop('draft_sale_details');
     }
 }
+

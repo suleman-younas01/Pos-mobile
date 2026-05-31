@@ -26,7 +26,7 @@ class AddForeignKeysToOfficeShiftsTable extends Migration
     public function down()
     {
         Schema::table('office_shifts', function (Blueprint $table) {
-            $table->dropForeign('office_shift_company_id');
+            $table->dropForeign(['company_id']);
         });
     }
 }

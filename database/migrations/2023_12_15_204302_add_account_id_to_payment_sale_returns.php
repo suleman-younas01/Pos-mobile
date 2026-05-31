@@ -29,7 +29,7 @@ class AddAccountIdToPaymentSaleReturns extends Migration
     public function down()
     {
         Schema::table('payment_sale_returns', function (Blueprint $table) {
-            $table->dropForeign('payment_sale_returns_account_id');
+            $table->dropForeign(['account_id']);
         });
     }
 }

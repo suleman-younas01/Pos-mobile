@@ -28,7 +28,7 @@ class AddSaleUnitIdToQuotationDetailsTable extends Migration
     public function down()
     {
         Schema::table('quotation_details', function (Blueprint $table) {
-            $table->dropForeign('sale_unit_id_quotation');
+            $table->dropForeign(['sale_unit_id']);
         });
     }
 }

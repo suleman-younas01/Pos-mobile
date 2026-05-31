@@ -15,7 +15,7 @@ class PermissionRoleSeeder extends Seeder
     public function run()
     {
         // Insert some stuff
-        DB::table('permission_role')->insert(
+        DB::table('permission_role')->upsert(
             [
                 [
                     'id' => 1,
@@ -1142,6 +1142,9 @@ class PermissionRoleSeeder extends Seeder
                 ],
 
             ]
+            ,
+            ['id'],
+            ['permission_id', 'role_id']
         );
     }
 }

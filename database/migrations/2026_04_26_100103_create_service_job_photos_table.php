@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
-            $table->index('service_job_id');
-            $table->index('stage');
+            $table;
+            $table;
         });
     }
 
@@ -31,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('service_job_photos');
     }
 };
+

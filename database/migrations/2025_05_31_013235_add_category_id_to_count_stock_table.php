@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('count_stock', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('category_id')->index('count_stock_category_id')->nullable()->after('warehouse_id');
+            $table->integer('category_id')->nullable()->after('warehouse_id');
             $table->foreign('category_id', 'count_stock_category_id')->references('id')->on('categories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 
         });
@@ -29,3 +29,4 @@ return new class extends Migration
         });
     }
 };
+

@@ -28,7 +28,7 @@ class AddSaleIdToSaleReturnTable extends Migration
     public function down()
     {
         Schema::table('sale_returns', function (Blueprint $table) {
-            $table->dropForeign('sale_id_return_sales');
+            $table->dropForeign(['sale_id']);
         });
     }
 }

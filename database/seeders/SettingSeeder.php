@@ -14,10 +14,9 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        // Insert some stuff
-        DB::table('settings')->insert(
+        DB::table('settings')->updateOrInsert(
+            ['id' => 1],
             [
-                'id' => 1,
                 'email' => 'admin@example.com',
                 'currency_id' => 1,
                 'client_id' => 1,
@@ -39,8 +38,8 @@ class SettingSeeder extends Seeder
                 'quotation_with_stock' => 1,
                 'show_language' => 1,
                 'default_tax' => 0,
+                'deleted_at' => null,
             ]
-
         );
     }
 }

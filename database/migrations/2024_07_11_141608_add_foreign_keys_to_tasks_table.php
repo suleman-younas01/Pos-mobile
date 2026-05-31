@@ -27,8 +27,8 @@ class AddForeignKeysToTasksTable extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropForeign('Tasks_company_id');
-            $table->dropForeign('Tasks_project_id');
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['project_id']);
         });
     }
 }

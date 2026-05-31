@@ -30,7 +30,7 @@ class AddForeignKeysToWarehouseLocationsTable extends Migration
     public function down()
     {
         Schema::table('warehouse_locations', function (Blueprint $table) {
-            $table->dropForeign('warehouse_locations_wh_fk');
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

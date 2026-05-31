@@ -28,7 +28,7 @@ class AddPurchaseUnitIdToPurchaseDetailsTable extends Migration
     public function down()
     {
         Schema::table('purchase_details', function (Blueprint $table) {
-            $table->dropForeign('purchase_unit_id_purchase');
+            $table->dropForeign(['purchase_unit_id']);
         });
     }
 }

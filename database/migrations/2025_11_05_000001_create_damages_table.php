@@ -16,10 +16,10 @@ class CreateDamagesTable extends Migration
         Schema::create('damages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('user_id')->index('user_id_damage');
+            $table->integer('user_id');
             $table->date('date');
             $table->string('Ref', 192);
-            $table->integer('warehouse_id')->index('warehouse_id_damage');
+            $table->integer('warehouse_id');
             $table->float('items', 10, 0)->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->time('time')->nullable();
@@ -38,6 +38,7 @@ class CreateDamagesTable extends Migration
         Schema::drop('damages');
     }
 }
+
 
 
 

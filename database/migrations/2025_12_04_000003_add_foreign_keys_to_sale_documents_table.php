@@ -30,7 +30,7 @@ class AddForeignKeysToSaleDocumentsTable extends Migration
     public function down()
     {
         Schema::table('sale_documents', function (Blueprint $table) {
-            $table->dropForeign('sale_documents_sale_id_foreign');
+            $table->dropForeign(['sale_id']);
         });
     }
 }

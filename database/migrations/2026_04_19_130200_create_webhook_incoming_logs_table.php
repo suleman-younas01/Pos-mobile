@@ -22,9 +22,9 @@ return new class extends Migration
                 $table->timestamp('processed_at')->nullable();
                 $table->timestamps();
 
-                $table->index('source');
-                $table->index('status');
-                $table->index('created_at');
+                $table;
+                $table;
+                $table;
             });
         }
     }
@@ -34,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('webhook_incoming_logs');
     }
 };
+

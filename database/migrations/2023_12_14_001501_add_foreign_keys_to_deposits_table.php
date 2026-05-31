@@ -28,9 +28,9 @@ class AddForeignKeysToDepositsTable extends Migration
     public function down()
     {
         Schema::table('deposits', function (Blueprint $table) {
-            $table->dropForeign('deposit_account_id');
-            $table->dropForeign('deposit_category_id');
-            $table->dropForeign('deposit_user_id');
+            $table->dropForeign(['account_id']);
+            $table->dropForeign(['deposit_category_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

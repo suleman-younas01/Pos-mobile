@@ -16,9 +16,9 @@ class CreateProductWarehouseTable extends Migration
         Schema::create('product_warehouse', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('product_id')->index('product_warehouse_id');
-            $table->integer('warehouse_id')->index('warehouse_id');
-            $table->integer('product_variant_id')->nullable()->index('product_variant_id');
+            $table->integer('product_id');
+            $table->integer('warehouse_id');
+            $table->integer('product_variant_id')->nullable();
             $table->float('qte', 10, 0);
             $table->timestamps(6);
             $table->softDeletes();
@@ -35,3 +35,4 @@ class CreateProductWarehouseTable extends Migration
         Schema::drop('product_warehouse');
     }
 }
+

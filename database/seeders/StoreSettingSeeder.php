@@ -64,7 +64,9 @@ class StoreSettingSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ];
 
-        // INSERT ONLY. If a row with id=1 already exists, this is ignored.
-        DB::table('store_settings')->insertOrIgnore([$payload]);
+        DB::table('store_settings')->updateOrInsert(
+            ['id' => 1],
+            $payload
+        );
     }
 }

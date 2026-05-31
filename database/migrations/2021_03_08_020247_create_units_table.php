@@ -18,7 +18,7 @@ class CreateUnitsTable extends Migration
             $table->integer('id', true);
             $table->string('name', 192);
             $table->string('ShortName', 192);
-            $table->integer('base_unit')->nullable()->index('base_unit');
+            $table->integer('base_unit')->nullable();
             $table->char('operator', 192)->nullable()->default('*');
             $table->float('operator_value', 10, 0)->nullable()->default(1);
             $table->timestamps(6);
@@ -36,3 +36,4 @@ class CreateUnitsTable extends Migration
         Schema::drop('units');
     }
 }
+

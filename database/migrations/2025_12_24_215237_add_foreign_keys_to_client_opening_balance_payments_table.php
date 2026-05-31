@@ -25,10 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('client_opening_balance_payments', function (Blueprint $table) {
-            $table->dropForeign('client_id_opening_balance_payments');
-            $table->dropForeign('user_id_opening_balance_payments');
-            $table->dropForeign('payment_method_id_opening_balance_payments');
-            $table->dropForeign('account_id_opening_balance_payments');
+            $table->dropForeign(['client_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['payment_method_id']);
+            $table->dropForeign(['account_id']);
         });
     }
 };

@@ -29,11 +29,11 @@ class AddForeignKeysToEmployeesTable extends Migration
     public function down()
     {
         Schema::table('employees', function (Blueprint $table) {
-            $table->dropForeign('employees_company_id');
-            $table->dropForeign('employees_department_id');
-            $table->dropForeign('employees_designation_id');
-            $table->dropForeign('employees_office_shift_id');
-            $table->dropForeign('employees_role_users_id');
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['department_id']);
+            $table->dropForeign(['designation_id']);
+            $table->dropForeign(['office_shift_id']);
+            $table->dropForeign(['role_users_id']);
         });
     }
 }

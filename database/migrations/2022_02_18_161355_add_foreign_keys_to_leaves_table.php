@@ -29,10 +29,10 @@ class AddForeignKeysToLeavesTable extends Migration
     public function down()
     {
         Schema::table('leaves', function (Blueprint $table) {
-            $table->dropForeign('leave_company_id');
-            $table->dropForeign('leave_department_id');
-            $table->dropForeign('leave_employee_id');
-            $table->dropForeign('leave_leave_type_id');
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['department_id']);
+            $table->dropForeign(['employee_id']);
+            $table->dropForeign(['leave_type_id']);
         });
     }
 }

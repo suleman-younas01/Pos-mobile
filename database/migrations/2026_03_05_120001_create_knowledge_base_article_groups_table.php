@@ -32,8 +32,16 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        } catch (\Throwable $e) {
+            // Ignore on SQLite.
+        }
         Schema::dropIfExists('knowledge_base_article_groups');
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        } catch (\Throwable $e) {
+            // Ignore on SQLite.
+        }
     }
 };

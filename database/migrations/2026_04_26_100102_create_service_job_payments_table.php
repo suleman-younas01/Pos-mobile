@@ -23,11 +23,11 @@ return new class extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
-            $table->index('service_job_id');
-            $table->index('payment_method_id');
-            $table->index('account_id');
-            $table->index('date');
-            $table->index('payment_kind');
+            $table;
+            $table;
+            $table;
+            $table;
+            $table;
         });
     }
 
@@ -36,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('service_job_payments');
     }
 };
+

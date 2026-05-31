@@ -16,7 +16,7 @@ class CreateExpenseDocumentsTable extends Migration
         Schema::create('expense_documents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('expense_id')->index('expense_documents_expense_id');
+            $table->integer('expense_id');
             $table->string('name', 255);
             $table->string('path', 500);
             $table->bigInteger('size')->nullable();
@@ -36,6 +36,7 @@ class CreateExpenseDocumentsTable extends Migration
         Schema::dropIfExists('expense_documents');
     }
 }
+
 
 
 

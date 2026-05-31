@@ -16,11 +16,11 @@ class CreateDepositsTable extends Migration
         Schema::create('deposits', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('user_id')->index('deposit_user_id');
+            $table->integer('user_id');
             $table->date('date');
             $table->string('deposit_ref', 192);
-            $table->integer('account_id')->nullable()->index('deposit_account_id');
-            $table->integer('deposit_category_id')->index('deposit_category_id');
+            $table->integer('account_id')->nullable();
+            $table->integer('deposit_category_id');
             $table->float('amount', 10, 0);
             $table->text('description')->nullable();
             $table->timestamps(6);
@@ -38,3 +38,4 @@ class CreateDepositsTable extends Migration
         Schema::drop('deposits');
     }
 }
+

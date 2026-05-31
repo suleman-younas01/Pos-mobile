@@ -16,7 +16,7 @@ class CreatePurchaseDocumentsTable extends Migration
         Schema::create('purchase_documents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('purchase_id')->index('purchase_documents_purchase_id');
+            $table->integer('purchase_id');
             $table->string('name', 255);
             $table->string('path', 500);
             $table->bigInteger('size')->nullable();
@@ -36,3 +36,4 @@ class CreatePurchaseDocumentsTable extends Migration
         Schema::dropIfExists('purchase_documents');
     }
 }
+

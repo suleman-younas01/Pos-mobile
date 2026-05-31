@@ -27,8 +27,8 @@ class AddForeignKeysToPermissionRoleTable extends Migration
     public function down()
     {
         Schema::table('permission_role', function (Blueprint $table) {
-            $table->dropForeign('permission_role_permission_id');
-            $table->dropForeign('permission_role_role_id');
+            $table->dropForeign(['permission_id']);
+            $table->dropForeign(['role_id']);
         });
     }
 }

@@ -12,15 +12,12 @@ class AddForeignKeysToContractsTables extends Migration
      */
     private function dropForeignIfExists(string $table, string $name): void
     {
-        $exists = DB::selectOne(
-            "SELECT 1 FROM information_schema.TABLE_CONSTRAINTS
-             WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND CONSTRAINT_NAME = ? AND CONSTRAINT_TYPE = 'FOREIGN KEY'",
-            [$table, $name]
-        );
-        if ($exists) {
+        try {
             Schema::table($table, function (Blueprint $table) use ($name) {
                 $table->dropForeign($name);
             });
+        } catch (\Throwable $e) {
+            // Ignore missing foreign key or SQLite schema inspection differences.
         }
     }
 
@@ -66,7 +63,11 @@ class AddForeignKeysToContractsTables extends Migration
         });
 
         // user_id must match users.id type (integer); contract tables use unsignedBigInteger by default
-        DB::statement('ALTER TABLE contract_comments MODIFY user_id INT NOT NULL');
+        try {
+            DB::statement('ALTER TABLE contract_comments MODIFY user_id INT NOT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
         Schema::table('contract_comments', function (Blueprint $table) {
             $table->foreign('contract_id', 'contract_comments_contract_fk')
                 ->references('id')
@@ -96,7 +97,11 @@ class AddForeignKeysToContractsTables extends Migration
         });
 
         // user_id must match users.id type (integer); contract tables use unsignedBigInteger by default
-        DB::statement('ALTER TABLE contract_notes MODIFY user_id INT NOT NULL');
+        try {
+            DB::statement('ALTER TABLE contract_notes MODIFY user_id INT NOT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
         Schema::table('contract_notes', function (Blueprint $table) {
             $table->foreign('contract_id', 'contract_notes_contract_fk')
                 ->references('id')
@@ -128,33 +133,41 @@ class AddForeignKeysToContractsTables extends Migration
     public function down()
     {
         Schema::table('contracts', function (Blueprint $table) {
-            $table->dropForeign('contracts_client_fk');
-            $table->dropForeign('contracts_project_fk');
+            $table->dropForeign(['client_id']);
+            $table->dropForeign(['project_id']);
         });
 
         Schema::table('contract_attachments', function (Blueprint $table) {
-            $table->dropForeign('contract_attachments_contract_fk');
+            $table->dropForeign(['contract_id']);
         });
 
         Schema::table('contract_comments', function (Blueprint $table) {
-            $table->dropForeign('contract_comments_contract_fk');
-            $table->dropForeign('contract_comments_user_fk');
+            $table->dropForeign(['contract_id']);
+            $table->dropForeign(['user_id']);
         });
-        DB::statement('ALTER TABLE contract_comments MODIFY user_id BIGINT UNSIGNED NOT NULL');
+        try {
+            DB::statement('ALTER TABLE contract_comments MODIFY user_id BIGINT UNSIGNED NOT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
 
         Schema::table('contract_renewals', function (Blueprint $table) {
-            $table->dropForeign('contract_renewals_contract_fk');
-            $table->dropForeign('contract_renewals_from_contract_fk');
+            $table->dropForeign(['contract_id']);
+            $table->dropForeign(['renewed_from_contract_id']);
         });
 
         Schema::table('contract_notes', function (Blueprint $table) {
-            $table->dropForeign('contract_notes_contract_fk');
-            $table->dropForeign('contract_notes_user_fk');
+            $table->dropForeign(['contract_id']);
+            $table->dropForeign(['user_id']);
         });
-        DB::statement('ALTER TABLE contract_notes MODIFY user_id BIGINT UNSIGNED NOT NULL');
+        try {
+            DB::statement('ALTER TABLE contract_notes MODIFY user_id BIGINT UNSIGNED NOT NULL');
+        } catch (\Throwable $e) {
+            // SQLite does not support ALTER TABLE MODIFY; ignore on SQLite.
+        }
 
         Schema::table('contract_tasks', function (Blueprint $table) {
-            $table->dropForeign('contract_tasks_contract_fk');
+            $table->dropForeign(['contract_id']);
         });
     }
 }

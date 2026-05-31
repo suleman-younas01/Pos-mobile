@@ -27,8 +27,8 @@ class AddForeignKeysToPaymentSaleReturnsTable extends Migration
     public function down()
     {
         Schema::table('payment_sale_returns', function (Blueprint $table) {
-            $table->dropForeign('factures_sale_return');
-            $table->dropForeign('factures_sale_return_user_id');
+            $table->dropForeign(['sale_return_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

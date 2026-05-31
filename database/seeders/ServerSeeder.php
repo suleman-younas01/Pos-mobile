@@ -14,17 +14,16 @@ class ServerSeeder extends Seeder
      */
     public function run()
     {
-        // Insert some stuff
-        DB::table('servers')->insert(
+        DB::table('servers')->updateOrInsert(
+            ['id' => 1],
             [
-                'id' => 1,
                 'host' => 'mailtrap.io',
                 'port' => '2525',
                 'username' => 'test',
                 'password' => 'test',
                 'encryption' => 'tls',
+                'deleted_at' => null,
             ]
-
         );
     }
 }

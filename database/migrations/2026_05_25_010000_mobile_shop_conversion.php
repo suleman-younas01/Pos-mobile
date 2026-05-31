@@ -104,6 +104,7 @@ return new class extends Migration
             ['id' => 1],
             [
                 'currency_id' => $currencyId,
+                'email' => '',
                 'CompanyName' => "Adeel I Phone LAB & Part's",
                 'CompanyPhone' => 'M Awais - 03037444089',
                 'CompanyAdress' => 'Shop#134 1st Floor Mall Plaza Cantt',
@@ -156,7 +157,11 @@ return new class extends Migration
 
     private function dropIrrelevantModuleTables(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        } catch (\Throwable $e) {
+            // Ignore on SQLite.
+        }
 
         foreach ([
             'asset_categories', 'assets',
@@ -180,6 +185,10 @@ return new class extends Migration
             Schema::dropIfExists($table);
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        } catch (\Throwable $e) {
+            // Ignore on SQLite.
+        }
     }
 };

@@ -16,8 +16,8 @@ class CreateCombinedProductsTable extends Migration
         Schema::create('combined_products', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('product_id')->index('combined_products_product_id');
-            $table->integer('combined_product_id')->index('combined_products_combined_product_id');
+            $table->integer('product_id');
+            $table->integer('combined_product_id');
 
             $table->float('quantity', 10, 0);
             $table->timestamps(6);
@@ -38,3 +38,4 @@ class CreateCombinedProductsTable extends Migration
         Schema::dropIfExists('combined_products');
     }
 }
+

@@ -16,9 +16,9 @@ class CreateDamageDetailsTable extends Migration
         Schema::create('damage_details', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('product_id')->index('damage_product_id');
-            $table->integer('damage_id')->index('damage_damage_id');
-            $table->integer('product_variant_id')->nullable()->index('damage_product_variant');
+            $table->integer('product_id');
+            $table->integer('damage_id');
+            $table->integer('product_variant_id')->nullable();
             $table->float('quantity', 10, 0);
             $table->timestamps(6);
         });
@@ -34,6 +34,7 @@ class CreateDamageDetailsTable extends Migration
         Schema::drop('damage_details');
     }
 }
+
 
 
 

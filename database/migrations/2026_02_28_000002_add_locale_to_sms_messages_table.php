@@ -19,7 +19,19 @@ return new class extends Migration
         }
 
         // Ensure no NULL or empty name (legacy rows) so unique index can be added in next migration
-        \DB::statement("UPDATE sms_messages SET name = CONCAT('legacy_', id) WHERE name IS NULL OR TRIM(COALESCE(name, '')) = ''");
+        try {
+            \DB::statement("UPDATE sms_messages SET name = CONCAT('legacy_', id) WHERE name IS NULL OR TRIM(COALESCE(name, '')) = ''");
+        } catch (\Throwable $e) {
+            foreach (\DB::table('sms_messages')
+                ->select('id', 'name')
+                ->whereNull('name')
+                ->orWhereRaw("TRIM(COALESCE(name, '')) = ''")
+                ->get() as $message) {
+                \DB::table('sms_messages')
+                    ->where('id', $message->id)
+                    ->update(['name' => 'legacy_' . $message->id]);
+            }
+        }
     }
 
     /**

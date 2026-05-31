@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('id', true);
             $table->string('email', 191);
-            $table->integer('currency_id')->nullable()->index('currency_id');
+            $table->integer('currency_id')->nullable();
             $table->string('CompanyName');
             $table->string('CompanyPhone');
             $table->string('CompanyAdress');
@@ -38,3 +38,4 @@ class CreateSettingsTable extends Migration
         Schema::drop('settings');
     }
 }
+

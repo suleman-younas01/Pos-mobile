@@ -21,9 +21,9 @@ class CreatePurchaseDetailsTable extends Migration
             $table->string('tax_method', 192)->nullable()->default('1');
             $table->float('discount', 10, 0)->nullable()->default(0);
             $table->string('discount_method', 192)->nullable()->default('1');
-            $table->integer('purchase_id')->index('purchase_id');
-            $table->integer('product_id')->index('product_id');
-            $table->integer('product_variant_id')->nullable()->index('purchase_product_variant_id');
+            $table->integer('purchase_id');
+            $table->integer('product_id');
+            $table->integer('product_variant_id')->nullable();
             $table->float('total', 10, 0);
             $table->float('quantity', 10, 0);
             $table->timestamps(6);
@@ -40,3 +40,4 @@ class CreatePurchaseDetailsTable extends Migration
         Schema::drop('purchase_details');
     }
 }
+

@@ -27,8 +27,8 @@ class AddForeignKeysToTransferMoneyTable extends Migration
     public function down()
     {
         Schema::table('transfer_money', function (Blueprint $table) {
-            $table->dropForeign('from_account_id');
-            $table->dropForeign('to_account_id');
+            $table->dropForeign(['from_account_id']);
+            $table->dropForeign(['to_account_id']);
         });
     }
 }

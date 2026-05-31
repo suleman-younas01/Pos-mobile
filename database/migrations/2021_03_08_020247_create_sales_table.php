@@ -16,12 +16,12 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('user_id')->index('user_id_sales');
+            $table->integer('user_id');
             $table->date('date');
             $table->string('Ref', 192);
             $table->boolean('is_pos')->nullable()->default(0);
-            $table->integer('client_id')->index('sale_client_id');
-            $table->integer('warehouse_id')->index('warehouse_id_sale');
+            $table->integer('client_id');
+            $table->integer('warehouse_id');
             $table->float('tax_rate', 10, 0)->nullable()->default(0);
             $table->float('TaxNet', 10, 0)->nullable()->default(0);
             $table->float('discount', 10, 0)->nullable()->default(0);
@@ -46,3 +46,4 @@ class CreateSalesTable extends Migration
         Schema::drop('sales');
     }
 }
+

@@ -28,9 +28,9 @@ class AddForeignKeysToExpensesTable extends Migration
     public function down()
     {
         Schema::table('expenses', function (Blueprint $table) {
-            $table->dropForeign('expense_category_id');
-            $table->dropForeign('expense_user_id');
-            $table->dropForeign('expense_warehouse_id');
+            $table->dropForeign(['expense_category_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['warehouse_id']);
         });
     }
 }

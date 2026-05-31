@@ -30,7 +30,7 @@ class AddForeignKeysToPurchaseDocumentsTable extends Migration
     public function down()
     {
         Schema::table('purchase_documents', function (Blueprint $table) {
-            $table->dropForeign('purchase_documents_purchase_id_foreign');
+            $table->dropForeign(['purchase_id']);
         });
     }
 }

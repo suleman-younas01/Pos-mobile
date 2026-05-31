@@ -30,7 +30,7 @@ class AddForeignKeysToExpenseDocumentsTable extends Migration
     public function down()
     {
         Schema::table('expense_documents', function (Blueprint $table) {
-            $table->dropForeign('expense_documents_expense_id_foreign');
+            $table->dropForeign(['expense_id']);
         });
     }
 }

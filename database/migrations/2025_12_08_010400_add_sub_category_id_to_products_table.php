@@ -41,7 +41,7 @@ class AddSubCategoryIdToProductsTable extends Migration
                 // Drop FK and index before dropping the column
                 if (Schema::hasColumn('products', 'sub_category_id')) {
                     // Named explicitly in up()
-                    $table->dropForeign('products_sub_category_id_foreign');
+                    $table->dropForeign(['sub_category_id']);
                     $table->dropIndex('sub_category_id');
                     $table->dropColumn('sub_category_id');
                 }

@@ -27,8 +27,8 @@ class AddForeignKeysToDesignationsTable extends Migration
     public function down()
     {
         Schema::table('designations', function (Blueprint $table) {
-            $table->dropForeign('designation_company_id');
-            $table->dropForeign('designation_departement_id');
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['department_id']);
         });
     }
 }

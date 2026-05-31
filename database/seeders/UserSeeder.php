@@ -14,10 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Insert some stuff
-        DB::table('users')->insert(
+        DB::table('users')->updateOrInsert(
+            ['id' => 1],
             [
-                'id' => 1,
                 'firstname' => 'William',
                 'lastname' => 'Castillo',
                 'username' => 'William Castillo',
@@ -29,6 +28,7 @@ class UserSeeder extends Seeder
                 'statut' => 1,
                 'is_all_warehouses' => 1,
                 'record_view' => 1,
+                'deleted_at' => null,
             ]
         );
     }

@@ -29,10 +29,10 @@ class AddForeignKeysToDraftSaleDetailsTable extends Migration
     public function down()
     {
         Schema::table('draft_sale_details', function (Blueprint $table) {
-            $table->dropForeign('draft_sale_details_draft_sale_id');
-            $table->dropForeign('draft_sale_details_product_id');
-            $table->dropForeign('draft_sale_details_product_variant_id');
-            $table->dropForeign('draft_sale_details_sale_unit_id');
+            $table->dropForeign(['draft_sale_id']);
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['product_variant_id']);
+            $table->dropForeign(['sale_unit_id']);
         });
     }
 }

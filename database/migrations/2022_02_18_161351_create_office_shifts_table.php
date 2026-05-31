@@ -16,7 +16,7 @@ class CreateOfficeShiftsTable extends Migration
         Schema::create('office_shifts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id', true);
-            $table->integer('company_id')->index('office_shift_company_id');
+            $table->integer('company_id');
             $table->string('name', 191);
             $table->string('monday_in', 191)->nullable();
             $table->string('monday_out', 191)->nullable();
@@ -47,3 +47,4 @@ class CreateOfficeShiftsTable extends Migration
         Schema::drop('office_shifts');
     }
 }
+

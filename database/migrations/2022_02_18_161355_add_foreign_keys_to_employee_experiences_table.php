@@ -26,7 +26,7 @@ class AddForeignKeysToEmployeeExperiencesTable extends Migration
     public function down()
     {
         Schema::table('employee_experiences', function (Blueprint $table) {
-            $table->dropForeign('employee_experience_employee_id');
+            $table->dropForeign(['employee_id']);
         });
     }
 }

@@ -28,7 +28,7 @@ class AddPurchaseIdToPurchaseReturnTable extends Migration
     public function down()
     {
         Schema::table('purchase_returns', function (Blueprint $table) {
-            $table->dropForeign('purchase_id_purchase_returns');
+            $table->dropForeign(['purchase_id']);
         });
     }
 }

@@ -23,9 +23,9 @@ class CreateQuotationDetailsTable extends Migration
             $table->string('discount_method', 192)->nullable()->default('1');
             $table->float('total', 10, 0);
             $table->float('quantity', 10, 0);
-            $table->integer('product_id')->index('product_id_quotation_details');
-            $table->integer('product_variant_id')->nullable()->index('quote_product_variant_id');
-            $table->integer('quotation_id')->index('quotation_id');
+            $table->integer('product_id');
+            $table->integer('product_variant_id')->nullable();
+            $table->integer('quotation_id');
             $table->timestamps(6);
         });
     }
@@ -40,3 +40,4 @@ class CreateQuotationDetailsTable extends Migration
         Schema::drop('quotation_details');
     }
 }
+
